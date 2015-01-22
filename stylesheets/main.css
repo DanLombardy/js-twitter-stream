@@ -1,0 +1,33 @@
+
+    h1 {
+      padding-left: 10px;
+      color: #0099CC;
+    }
+
+    .h2container {
+    padding-left: 10px;
+    padding-bottom: 0px;
+    color: blue;
+
+    }
+    .tweetcontainer {
+    border: 2px solid;
+    margin: 10px;
+    padding: 10px;
+    border-color: gray;
+    max-width: 650px;
+    }
+
+    #screenname{
+      color: black;
+      font-weight: bold;
+      font-size: 1.25em;
+    }
+
+    #name{
+      color:gray;
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+    }
