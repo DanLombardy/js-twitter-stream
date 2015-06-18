@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Ractive Test</title>
+  <link href="stylesheets/main.css" rel='stylesheet' >
+</head>
+
+<body>
+  <h1>Dan's Ractive Twitter Test</h1>
+  <div id='container'></div>
+<!-- Template -->
+  <script id='template' type='text/ractive'>
+    <div class="h2container">
+    <h2>
+      <span>Tweets {{twitter[twitter.length - 1].user.statuses_count}}</span>|
+
+      <span>Followers {{twitter[twitter.length - 1].user.followers_count}}</span>|
+      <span>Favorites {{twitter[twitter.length - 1].user.favourites_count}}</span>
+    </h2>
+    </div>
+
+    {{#each twitter}}
+      <div class="tweetcontainer">
+        <div>
+          <span><img src="{{user.profile_image_url}}" alt="User Image" style="width:10px;height:10px"></span>
+          <span id="screenname">{{user.screen_name}}</span>
+          <span id="name">@{{user.name}}</span>
+           -
+          <span>{{created_at}}</span>
+        </div>
+
+        <div>
+          <span>{{text}}</span><span>{{entities.hashtags}}</span>
+        </div>
+      </div>
+
+    {{/each}}
+
+
+
+
+  </script>
+  <script src="js/jquery.js" type="text/javascript"/>
+  <!--AJAX Call-->
+  <script>
+$.ajax({
+    url: "https://api.twitter.com/1.1/statuses/user_timeline.json",
+    data: {
+        id: 123
+    },
+    type: "GET",
+    dataType : "json",
+    success: function( json ) {
+        $( "<h1/>" ).text( json.title ).appendTo( "body" );
+        $( "<div class=\"content\"/>").html( json.html ).appendTo( "body" );
+    },
+    error: function( xhr, status, errorThrown ) {
+        alert( "Sorry, there was a problem!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+    },
+    complete: function( xhr, status ) {
+        alert( "The request is complete!" );
+    }
+});
+  </script>
+  <!--CDN Connection -->
+  <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
+  <!--Data File-->
+  <script src="JSON/Twitter_JSON.js">
+  
+  </script>
+</body>
